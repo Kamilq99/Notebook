@@ -1,5 +1,5 @@
 backend/venv/
-backend/__pycache__/
+backend/__pycache__/*
 backend/*.pyc
 backend/.env
 frontend/node_modules/
@@ -9,3 +9,6 @@ frontend/build/
 .idea/
 .vscode/
 *.log
+backend/__pycache__
+backend/blueprints/__pycache__/
+backend/model/__pycache__/
