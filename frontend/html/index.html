@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen font-sans">
+
+  <nav class="bg-white shadow p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold text-gray-800">Notes App</h1>
+    <a href="index.html" class="text-blue-500 hover:text-blue-700">Home</a>
+  </nav>
+
+  <div class="container mx-auto p-4">
+    <!-- Search -->
+    <div class="flex mb-4">
+      <input id="search-input" type="text" placeholder="Search notes..." class="flex-1 p-2 border border-gray-300 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-400">
+      <button id="search-btn" class="bg-blue-500 hover:bg-blue-600 text-white px-4 rounded-r">Search</button>
+    </div>
+
+    <div class="mb-4">
+    <a href="addnote.html" 
+        class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded inline-block">
+        Add Note
+    </a>
+    </div>
+
+
+    <!-- Notes container -->
+    <div id="notes-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <!-- Notes will be injected here by JS -->
+    </div>
+
+    <!-- Note form -->
+    <div id="note-form" class="bg-white p-4 rounded shadow mt-6 hidden">
+      <h3 id="form-title" class="text-lg font-semibold mb-2">Add Note</h3>
+      <input id="note-title-input" type="text" placeholder="Title" class="w-full p-2 mb-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+      <textarea id="note-content-input" placeholder="Content" class="w-full p-2 mb-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+      <div class="flex space-x-2">
+        <button id="save-note-btn" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Save</button>
+        <button id="cancel-note-btn" class="bg-gray-300 hover:bg-gray-400 text-gray-700 px-4 py-2 rounded">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/app.js"></script>
+</body>
+</html>
