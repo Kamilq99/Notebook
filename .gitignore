@@ -12,3 +12,4 @@ frontend/build/
 backend/__pycache__
 backend/blueprints/__pycache__/
 backend/model/__pycache__/
+backend/db_connect/__pycache__/

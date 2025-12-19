@@ -3,18 +3,25 @@ from model.note import Note
 
 add_note_bp = Blueprint('add_note', __name__)
 
-@add_note_bp.route('/api/addNote', methods=['POST'])
-def add_note():
-    data = request.get_json()
-    title = data.get('title')
-    author = data.get('author')
-    content = data.get('content')
+def init_routes(es, index_name = 'notes'):
+    @add_note_bp.route('/api/notes', methods=['POST'])
+    def add_note():
+        data = request.get_json()
+        title = data.get('title')
+        author = data.get('author')
+        content = data.get('content')
 
-    if not title or not author or not content:
-        return jsonify({'error': 'Missing required fields'}), 400
+        if not title or not author or not content:
+            return jsonify({"error": "Title, author, and content are required"}), 400
 
-    new_note = Note(title=title, author=author, content=content)
-    # Here you would typically add the new_note to your database
-    # For example: db.session.add(new_note); db.session.commit()
+        note = Note(title=title, author=author, content=content)
 
-    return jsonify({'message': 'Note added successfully', 'note': new_note.__dict__}), 201
+        # Insert note into Elasticsearch
+        doc = {
+            'title': note.title,
+            'author': note.author,
+            'content': note.content
+        }
+        res = es.index(index=index_name, document=doc)
+        
+        return jsonify({"message": "Note added", "id": res['_id']}), 201
