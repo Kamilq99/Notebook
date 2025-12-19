@@ -5,18 +5,16 @@ from blueprints import (
     edit_note_bp,
     show_notes_bp
 )
-from db_connect.elasticsearch_connect import elasticsearch_connect
-from db_connect.elasticsearch_connect import create_index
+from config import init_app_config
 
 app = Flask(__name__)
+
+init_app_config(app)
 
 app.register_blueprint(add_note_bp)
 app.register_blueprint(delete_note_bp)
 app.register_blueprint(edit_note_bp)
 app.register_blueprint(show_notes_bp)
 
-es = elasticsearch_connect()
-es_create_index = create_index(es, 'notes')
-
 if __name__ == '__main__':
-    app.run(debug=True, host='127.0.0.1', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5001)
